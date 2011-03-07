@@ -1,0 +1,16 @@
+<!-- release notes text 12310211 -->
+<!-- release notes status -->
+<!-- writer -->
+<% siteURL="https://issues.jboss.org/browse" %>
+<variablelist>
+<% issues.each do |issue| %>
+   <varlistentry>
+      <term><ulink url="<%= siteURL %>/<%= issue.key %>" /></term>
+      <listitem>
+         <para>
+         <%= issue.getCustomFieldValueForKey("Release Notes Text") %>   
+         </para>
+      </listitem>
+   </varlistentry>
+<% end %>
+</variablelist>
