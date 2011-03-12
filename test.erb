@@ -4,12 +4,22 @@
 
 <% siteURL="https://issues.jboss.org/browse" %>
 <variablelist>
-<% issues.each do |issue| %>
+   <% issues.each do |issue| 
+      #if the first line of  RNText starts with siteURL
+      release_note_text = issue.getCustomFieldValueForID("customfield_12310211").to_s
+      finalURL = release_note_text.split("\n")[0].to_s
+      if finalURL.start_with?(siteURL) then 
+         release_note_text = release_note_text.gsub(finalURL,"")
+      else 
+         finalURL = siteURL+"/"+issue.key
+      end
+   %>
+   <!-- <%= finalURL %> -->
    <varlistentry>
       <term><ulink url="<%= siteURL %>/<%= issue.key %>" /></term>
       <listitem>
          <para>
-         <%= issue.getCustomFieldValueForID("customfield_12310211").to_s.to_x  %>
+         <%= release_note_text.to_x  %>
          </para>
       </listitem>
    </varlistentry>
