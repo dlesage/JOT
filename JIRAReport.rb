@@ -16,6 +16,15 @@ class JIRA::RemoteIssue
   end
 end
 
+class String
+  def to_x 
+    text = self
+    text = text.gsub("<","&lt;")
+    text = text.gsub(">","&gt;")
+    text = text.gsub("&","&amp;")
+    return text
+  end
+end
 
 # ======================================== read commandline parameters
 template_file = ARGV[0]
@@ -34,18 +43,11 @@ end
 
 soapdriver = JIRA::JiraSoapService.new
 
-loginToken = soapdriver.login(username, password) #{}"Darrin", "fjIne9qNo")
-#issues = soapdriver.getIssuesFromJqlSearch(loginToken, "project = SOA AND resolution in (Unresolved, Done) AND fixVersion = \"5.1.0 GA\" AND component = Documentation", 999999)
-# == get the filter id for the supplied filter name
+loginToken = soapdriver.login(username, password)
 filterID = getFilterID(filter, loginToken, soapdriver)
-issues = soapdriver.getIssuesFromFilter(loginToken, filterID) #{}"SOA 5.1.0 - Affects Documentation")
+issues = soapdriver.getIssuesFromFilter(loginToken, filterID)
 
-#issues = jira.call_driver("getIssuesFromJqlSearch", "project = SOA AND resolution in (Unresolved, Done) AND fixVersion = \"5.1.0 GA\" AND component = Documentation", 10)
-
-#for issue in issues
-#    puts "\n===========\n"+issue.inspect+"\n"
 #    puts jira.call_driver("getSecurityLevel",issue.key).inspect
-#end
 
 template = ERB.new File.new(template_file).read, nil, "%"
 template.result(binding)
