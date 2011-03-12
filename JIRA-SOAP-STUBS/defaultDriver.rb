@@ -1,5 +1,5 @@
-require 'default.rb'
-require 'defaultMappingRegistry.rb'
+require 'JIRA-SOAP-STUBS/default.rb'
+require 'JIRA-SOAP-STUBS/defaultMappingRegistry.rb'
 require 'soap/rpc/driver'
 
 module JIRA

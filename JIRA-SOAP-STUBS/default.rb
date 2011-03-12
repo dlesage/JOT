@@ -445,6 +445,7 @@ class RemoteIssue < AbstractRemoteEntity
     @votes = votes
   end
   
+  
 end
 
 # {http://beans.soap.rpc.jira.atlassian.com}RemoteAttachment

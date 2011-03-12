@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require 'defaultDriver.rb'
+require 'JIRA-SOAP-STUBS/defaultDriver.rb'
 
 
 module JIRA

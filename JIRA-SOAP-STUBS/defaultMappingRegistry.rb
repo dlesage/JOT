@@ -1,4 +1,4 @@
-require 'default.rb'
+require 'JIRA-SOAP-STUBS/default.rb'
 require 'soap/mapping'
 
 module JIRA

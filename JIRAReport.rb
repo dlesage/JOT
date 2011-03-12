@@ -2,19 +2,20 @@
 require 'rubygems'
 require 'erb'
 require 'soap/driver'
-require 'defaultDriver.rb'
+require 'JIRA-SOAP-STUBS/defaultDriver.rb'
 
 # ============= extension methods
-"""class RemoteIssue
-  def getCustomFieldValueForKey(key) 
-    customFieldValues.each do |field| 
-      if field.key == key then
-        return field.value
+class JIRA::RemoteIssue
+  def getCustomFieldValueForID(passedID) 
+    self.customFieldValues.each do |field| 
+      if field.customfieldId == passedID then
+        return field.values[0]
       end
     end
+    return nil
   end
-end 
-"""
+end
+
 
 # ======================================== read commandline parameters
 template_file = ARGV[0]
