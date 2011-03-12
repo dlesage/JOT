@@ -421,7 +421,9 @@ class RemoteIssue < AbstractRemoteEntity
   attr_accessor :updated
   attr_accessor :votes
 
-  def initialize(id = nil, affectsVersions = nil, assignee = nil, attachmentNames = nil, components = nil, created = nil, customFieldValues = nil, description = nil, duedate = nil, environment = nil, fixVersions = nil, key = nil, priority = nil, project = nil, reporter = nil, resolution = nil, status = nil, summary = nil, type = nil, updated = nil, votes = nil)
+  attr_accessor :security_level
+
+  def initialize(id = nil, affectsVersions = nil, assignee = nil, attachmentNames = nil, components = nil, created = nil, customFieldValues = nil, description = nil, duedate = nil, environment = nil, fixVersions = nil, key = nil, priority = nil, project = nil, reporter = nil, resolution = nil, status = nil, summary = nil, type = nil, updated = nil, votes = nil, security_level = nil)
     @id = id
     @affectsVersions = affectsVersions
     @assignee = assignee
@@ -443,6 +445,7 @@ class RemoteIssue < AbstractRemoteEntity
     @type = type
     @updated = updated
     @votes = votes
+    @security_level = security_level
   end
   
   

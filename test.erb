@@ -18,9 +18,18 @@
    <varlistentry>
       <term><ulink url="<%= siteURL %>/<%= issue.key %>" /></term>
       <listitem>
+         <% if (issue.security_level == "Public") then %>
          <para>
          <%= release_note_text.to_x  %>
          </para>
+         <% else %>
+         <warning>
+            <title>Not Public Yet - <%= issue.security_level %></title>
+            <para>
+            <%= release_note_text.to_x  %>
+            </para>
+         </warning>
+         <% end %>
       </listitem>
    </varlistentry>
 <% end %>
