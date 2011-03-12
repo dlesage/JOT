@@ -9,7 +9,7 @@
       release_note_text = issue.getCustomFieldValueForID("customfield_12310211").to_s
       finalURL = release_note_text.split("\n")[0].to_s
       if finalURL.start_with?(siteURL) then 
-         release_note_text = release_note_text.gsub(finalURL,"")
+         release_note_text = release_note_text.gsub(finalURL+"\n","")
       else 
          finalURL = siteURL+"/"+issue.key
       end
