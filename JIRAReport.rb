@@ -3,28 +3,8 @@ require 'rubygems'
 require 'erb'
 require 'soap/driver'
 require 'JIRA-SOAP-STUBS/defaultDriver.rb'
+require 'extension_methods.rb'
 
-# ============= extension methods
-class JIRA::RemoteIssue
-  def getCustomFieldValueForID(passedID) 
-    self.customFieldValues.each do |field| 
-      if field.customfieldId == passedID then
-        return field.values[0]
-      end
-    end
-    return nil
-  end
-end
-
-class String
-  def to_x 
-    text = self
-    text = text.gsub("<","&lt;")
-    text = text.gsub(">","&gt;")
-    text = text.gsub("&","&amp;")
-    return text
-  end
-end
 
 # ======================================== read commandline parameters
 template_file = ARGV[0]
