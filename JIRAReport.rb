@@ -6,9 +6,8 @@ require 'optparse'
 require 'JIRA-SOAP-STUBS/defaultDriver.rb'
 require 'extension_methods.rb'
 
-"""
-http://docs.atlassian.com/software/jira/docs/api/rpc-jira-plugin/latest/com/atlassian/jira/rpc/soap/JiraSoapService.html
-"""
+#http://docs.atlassian.com/software/jira/docs/api/rpc-jira-plugin/latest/com/atlassian/jira/rpc/soap/JiraSoapService.html
+#wsdl2ruby.rb --wsdl http://issues.jboss.org/rpc/soap/jirasoapservice-v2?wsdl --type=client --module JIRA
 
 def fatalError(message)
   puts "ERROR COMMUNICATING WITH JIRA:"
@@ -36,7 +35,15 @@ end
 # ======================================== 
 def getIssuesFromFilter( username, password, filter, getSecurityLevels)
   soapdriver = JIRA::JiraSoapService.new
-  loginToken = soapdriver.login(username, password)
+
+  begin
+    loginToken = soapdriver.login(username, password)
+  rescue SocketError
+    fatalError("Couldn't open connection.  Check your network.")
+  rescue StandardError
+    fatalError("Login failed.") 
+  end
+
   filterID = getFilterID(filter, loginToken, soapdriver)
   issues = soapdriver.getIssuesFromFilter(loginToken, filterID)
   if (getSecurityLevels) then 
