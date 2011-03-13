@@ -10,6 +10,12 @@ require 'extension_methods.rb'
 http://docs.atlassian.com/software/jira/docs/api/rpc-jira-plugin/latest/com/atlassian/jira/rpc/soap/JiraSoapService.html
 """
 
+def fatalError(message)
+  puts "ERROR COMMUNICATING WITH JIRA:"
+  puts "\t #{message}"      
+  exit
+end
+
 # ======================================== 
 def getFilterID(name, token, driver)
   favFilters = driver.getFavouriteFilters(token)
@@ -41,9 +47,14 @@ end
 
 # ======================================== 
 def getTemplateOutputForIssues(template_file, issues)
-  template = ERB.new File.new(template_file).read, nil, "%"
-  template.result(binding)
-  return template.result(binding)
+  begin
+    template = ERB.new File.new(template_file).read, nil, "%"
+    template.result(binding)
+    return template.result(binding)
+  rescue => error
+    fatalError("\t#{error.to_s}")
+    exit
+  end
 end
 
 # ======================================== read commandline parameters
@@ -77,6 +88,11 @@ def processCommandLine
     opts.on( '-f FILTER', '--filter FILTER', 'JIRA filter' ) do | filter |
       options[:filter] = filter
     end
+
+    options[:query] = ""
+    opts.on( '-q QUERY', '--query QUERY', 'JQL Query' ) do | query |
+      options[:query] = query
+    end
     
     opts.on( '-h', '--help', 'Display this screen' ) do
       puts opts
@@ -84,7 +100,25 @@ def processCommandLine
     end
      
   end
-  optparse.parse!
+  
+  begin
+    optparse.parse!
+  rescue => error
+    puts "ERROR PARSING COMMANDLINE:"
+    puts "\t"+error.to_s
+    puts
+    puts optparse
+    exit
+  end
+  if (options[:query] != "" and options[:filter] != "") then
+    puts "ERROR PARSING COMMANDLINE:"
+    puts "\tOnly specify a JQL query with -q or a filter with -f, not both."
+    puts
+    puts optparse
+    exit
+  end
+  
+  
   return options
 end
 
