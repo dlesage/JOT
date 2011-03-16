@@ -2,6 +2,10 @@
 This is a fairly simple Ruby script that uses SOAP to retrieve issues from a JIRA instance and pumps them into
 a customizable ERB template.
 
+# FAQ
+1. * Doesn't the name of this project kind of suck ?
+   * Yes it does.  Considering renaming it to Jot, as in JIRA Output Tool.  Any better suggestions are welcome.
+
 # INSTALLING
 1. Ensure Ruby is installed.  Currently only tested with Ruby 1.8.7 on Mac OSX Snow Leopard.
 2. Install SOAP4R.  `[localhost ]$ sudo gem install soap4r`
