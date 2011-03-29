@@ -69,7 +69,7 @@ def processCommandLine
   options = {}
 
   optparse = OptionParser.new do |opts|
-    opts.banner = "JIRAReport.rb [options]"
+    opts.banner = "JOT.rb [options]"
 
     options[:getSecurityLevels] = false
     opts.on( '-s', '--security', 'Retreive security levels. Slow, don''t do it unless necessary' ) do

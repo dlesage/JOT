@@ -2,22 +2,18 @@
 This is a fairly simple Ruby script that uses SOAP to retrieve issues from a JIRA instance and pumps them into
 a customizable ERB template.
 
-# FAQ
-1. * Doesn't the name of this project kind of suck ?
-   * Yes it does.  Considering renaming it to Jot, as in JIRA Output Tool.  Any better suggestions are welcome.
-
 # INSTALLING
 1. Ensure Ruby is installed.  Currently only tested with Ruby 1.8.7 on Mac OSX Snow Leopard.
 2. Install SOAP4R.  `[localhost ]$ sudo gem install soap4r`
 3. Download by clicking on the `Downloads` button above on the right and picking a archive format
 4. Unzip it where you want it to go.   Make sure you unzip into a directory so you don't end up with files everywhere.
-4. Optionally add the new directory you created to your PATH, `PATH=$PATH:~/scripts/JIRAReport/`
-5. Make the `JIRAReport.rb` file executable, `[localhost]$ chmod +x JIRAReport.rb`
+4. Optionally add the new directory you created to your PATH, `PATH=$PATH:~/scripts/JOT/`
+5. Make the `JOT.rb` file executable, `[localhost]$ chmod +x JOT.rb`
 
 # RUNNING
-Run `JIRAReport.rb` and specify arguments as required.  Not rocket science.
+Run `JOT.rb` and specify arguments as required.  Not rocket science.
 
-    JIRAReport.rb [options]
+    JOT.rb [options]
         -s, --security                   Retreive security levels. Slow, dont do it unless necessary
         -t, --template FILE              template to use
         -u, --username USERNAME          JIRA username
@@ -25,7 +21,7 @@ Run `JIRAReport.rb` and specify arguments as required.  Not rocket science.
         -f, --filter FILTER              JIRA filter
         -h, --help                       Display this screen
 
-E.g. : `[localhost]$ JIRAReport.rb -u joe -p jf84hjf -f "Unresolved JIRAs for 4.8" -t overdue_issues_report.erb`
+E.g. : `[localhost]$ JOT.rb -u joe -p jf84hjf -f "Unresolved JIRAs for 4.8" -t overdue_issues_report.erb`
 
 The error handling for the parameters is pretty terrible right now.  
 
