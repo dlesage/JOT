@@ -2,8 +2,14 @@
 This is a fairly simple Ruby script that uses SOAP to retrieve issues from a JIRA instance and pumps them into
 a customizable ERB template.
 
+# TESTED ON
+
+* Ruby 1.8.7 on Mac OSX Snow Leopard.
+* Ruby 1.8.6 on Fedora 13 64bit
+
 # INSTALLING
-1. Ensure Ruby is installed.  Currently only tested with Ruby 1.8.7 on Mac OSX Snow Leopard.
+1. Ensure Ruby is installed.  
+2. On Fedora 13, install the Ruby Gems package, `[localhost ]$ sudo yum install rubygems`
 2. Install SOAP4R.  `[localhost ]$ sudo gem install soap4r`
 3. Download by clicking on the `Downloads` button above on the right and picking a archive format
 4. Unzip it where you want it to go.   Make sure you unzip into a directory so you don't end up with files everywhere.
