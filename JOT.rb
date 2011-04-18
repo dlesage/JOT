@@ -100,7 +100,7 @@ def processCommandLine
     end
 
     options[:query] = ""
-    opts.on( '-q QUERY', '--query QUERY', 'JQL Query' ) do | query |
+    opts.on( '-q QUERY', '--query QUERY', 'JQL Query [NOT IMPLEMENTED YET]' ) do | query |
       options[:query] = query
     end
     
@@ -108,8 +108,15 @@ def processCommandLine
       puts opts
       exit
     end
-     
+
+    if (ARGV.size == 0) then
+      puts opts
+      exit
+    end
+
+   
   end
+
   
   begin
     optparse.parse!
