@@ -1,8 +1,11 @@
 #!/usr/bin/env ruby
+$LOAD_PATH.unshift File.dirname(__FILE__)
+
 require 'rubygems'
 require 'erb'
 require 'soap/driver'
 require 'optparse'
+
 require 'JIRA-SOAP-STUBS/defaultDriver.rb'
 require 'extension_methods.rb'
 
