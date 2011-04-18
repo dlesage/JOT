@@ -135,8 +135,17 @@ end
 # ======================================== 
 options = processCommandLine
 
-puts getTemplateOutputForIssues(
-  options[:template_file], 
-  getIssuesFromFilter(options[:username], options[:password], options[:filter], options[:getSecurityLevels]) 
-)
+if (options[:template_file] == "") then
+  issues = getIssuesFromFilter(options[:username], options[:password], options[:filter], options[:getSecurityLevels])
+  
+  issues.each do |issue|
+    puts issue.inspect
+  end
+  
+else
 
+  puts getTemplateOutputForIssues(
+    options[:template_file], 
+    getIssuesFromFilter(options[:username], options[:password], options[:filter], options[:getSecurityLevels]) 
+  )
+end
