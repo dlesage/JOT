@@ -1,13 +1,13 @@
 <?xml version='1.0'?>
 <!DOCTYPE variablelist PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
 ]>
-<!-- release notes text customfield_12310211 -->
 
 <% siteURL="https://issues.jboss.org/browse" %>
 <variablelist>
    <% issues.each do |issue| 
-      #if the first line of  RNText starts with siteURL
       release_note_text = issue.getCustomFieldValueForID("customfield_12310211").to_s
+
+      #if the first line of  RNText starts with siteURL
       finalURL = release_note_text.split("\n")[0].to_s
       if finalURL.start_with?(siteURL) then 
          release_note_text = release_note_text.gsub(finalURL+"\n","")
@@ -15,9 +15,9 @@
          finalURL = siteURL+"/"+issue.key
       end
    %>
-   <!-- <%= finalURL %> -->
+   <!-- <%= siteURL %>/<%= issue.key %> -->
    <varlistentry>
-      <term><ulink url="<%= siteURL %>/<%= issue.key %>" /></term>
+      <term><ulink url="<%= finalURL %>" /></term>
       <listitem>
          <% if (issue.security_level == "Public") then %>
          <para>
